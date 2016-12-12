@@ -1,4 +1,4 @@
-package Kategori_Control;
+package Barang_Control;
 
 
 public class Kategori {
