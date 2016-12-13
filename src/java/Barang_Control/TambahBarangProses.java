@@ -36,9 +36,12 @@ public class TambahBarangProses extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String kodeBarang="brg09";
-        String kodeKategori="K001";
-        int kodePenjual=145314077;
+        
+        Query_Barang barang=new Query_Barang();
+        String kodeBarang=barang.kodeBarangOtmtis();
+        
+        String kodeKategori=request.getParameter("kategori");  //barang.kodeKtgoriOtmts() <-- untuk kategori baru
+        int kodePenjual=145314077; //diambil dari cookie login
         String nama=request.getParameter("namabarang");
         
         int harga=0;
@@ -48,9 +51,8 @@ public class TambahBarangProses extends HttpServlet {
         String gambar="gambar";
         String deskripsi=request.getParameter("deskripsi");
         String tgl="tanggal";
-        Query_Barang barang=new Query_Barang();
         barang.TambahBarang(kodeBarang,kodeKategori,kodePenjual,nama,harga,gambar,deskripsi,tgl);
-        response.sendRedirect("/ProyekPRL/Store.html");
+        response.sendRedirect("/ProyekPRL/store.html");
     }
 
     @Override

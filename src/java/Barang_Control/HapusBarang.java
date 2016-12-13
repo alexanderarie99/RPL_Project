@@ -28,7 +28,7 @@ public class HapusBarang extends HttpServlet {
         String kode_brng=request.getParameter("kode"); //<--- pakai ?kode=(kodenya)
         
         Query_Barang barang = new Query_Barang();
-        barang.Hapus(kode_brng);
+        barang.HapusBarang(kode_brng);
     }
 
     @Override

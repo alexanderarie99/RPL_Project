@@ -1,11 +1,10 @@
 package Barang_Control;
-
 import Database.Koneksi;
-import Penjual_Control.Query_Penjual;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,13 +19,10 @@ public class Query_Barang {
     public Query_Barang() {
         database = new Koneksi();
     }
-    
-
-    
-    public void TambahBarang(String kode_brg,String kode_ktgori,int kode_pnjual,String nama,int harga,String gambar,String deskripsi,String kedaluarsa){
-        
+    public void TambahBarang(String kode_brg,String kode_ktgori,int kode_pnjual,
+            String nama,int harga,String gambar,String deskripsi,String kedaluarsa){        
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO BARANG VALUES (?,?,?,?,?,?,?,?)"; //<--- cek lagi
+        String sql = "INSERT INTO BARANG VALUES (?,?,?,?,?,?,?,?)";
         connection = database.getConnection();
         try {
             stmt = connection.prepareStatement(sql);
@@ -39,17 +35,19 @@ public class Query_Barang {
         stmt.setString(7, deskripsi);
         stmt.setString(8, kedaluarsa);
         stmt.executeUpdate();
+//        connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(Query_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void EditBarang(String kode_brg, String kode_pnjual, String nama, String kode_ktgori, String harga, String deskripsi, String gambar){
+    public void EditBarang(String kode_brg, String kode_pnjual, String nama, 
+            String kode_ktgori, String harga, String deskripsi, String gambar){
         PreparedStatement stmt = null;
         String sql = "update barang set NAMABARANG=?, KODEKATEGORI=?, "
                 + "SATUAN=?, QTYMIN=?, QTYMAX=?, "
                 + " RITELSEBELUM=?, RITELSETELAH=?, BELISEBELUM=?, BELISETELAH=? "
-                + "where Kode_Barang =?";  //<--- cek lagi
+                + "where Kode_Barang =?";
         connection = database.getConnection();
         try {
             stmt = connection.prepareStatement(sql);
@@ -60,43 +58,65 @@ public class Query_Barang {
             Logger.getLogger(Query_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void TambahPenjual(int NIM, String nama, String email, String pass, 
-            String j_kelamin, int hp, String alamat, String line, String bbm)
-             {
-        PreparedStatement stmt = null;
-        String sql = "INSERT INTO PENJUAL VALUES (?,?,?,?,?,?,?,?,?)"; //<--- cek lagi
-        connection = database.getConnection();
-        try {
-            stmt = connection.prepareStatement(sql);
-        stmt.setInt(1, NIM); //idpenjual
-        stmt.setString(2, nama);
-        stmt.setString(3, email);
-        stmt.setString(4, pass);
-        stmt.setString(5, j_kelamin);
-        stmt.setInt(6, hp);
-        stmt.setString(7, alamat);
-        stmt.setString(8, line);
-        stmt.setString(9, bbm);
-        stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Query_Penjual.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-
-    
-        
-    
-    public void Hapus(String kode_brg){
+    public void HapusBarang(String kode_brg){
         PreparedStatement stmt = null;
         String sql = "DELETE BARANG WHERE IDBARANG=?"; //<--- cek lagi
         connection = database.getConnection();
         try {
             stmt = connection.prepareStatement(sql);
-//        stmt.setString(1, kode_brg);
+        stmt.setString(1, kode_brg);
         stmt.executeUpdate();
+//        connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(Query_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String kodeBarangOtmtis() {
+        String kode = null;
+        try {
+        ResultSet rset = null;
+        String sql = "select substr(IDBARANG, 4) from barang";
+        connection = database.getConnection();
+        Statement stat = connection.createStatement();
+        rset = stat.executeQuery(sql);
+            int bantu=1;
+            while (rset.next()){
+                if (!rset.getString(1).isEmpty()){
+                    bantu=(Integer.parseInt(rset.getString(1))+1);
+                } else {
+                    bantu = 1;
+                }
+            }
+            kode = "brg" + String.valueOf(bantu);
+//            connection.close();
+        } catch (SQLException e) {
+            
+        }
+        return kode;
+    }
+    public String kodeKtgoriOtmts() {
+        String kode = null;
+        try {
+        ResultSet rset = null;
+        String sql = "select substr(IDKATEGORI, 2) from KATEGORI";
+        connection = database.getConnection();
+        Statement stat = connection.createStatement();
+        rset = stat.executeQuery(sql);
+            int bantu=1;
+            while (rset.next()){
+                if (!rset.getString(1).isEmpty()){
+                    bantu=(Integer.parseInt(rset.getString(1))+1);
+                } else {
+                    bantu = 1;
+                }
+            }
+            kode = "K" + String.valueOf(bantu);
+            connection.close();
+        } catch (SQLException e) {
+            
+        }
+        return kode;
+    }
+    
 }
