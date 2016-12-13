@@ -22,15 +22,23 @@ public class Query_Penjual {
     public Query_Penjual() {
         database = new Koneksi();
     }
-    public void TambahPenjual(int NIM, String nama, String email, String pass, int hp, String line, String bbm)
+    public void TambahPenjual(int NIM, String nama, String email, String pass, 
+            String j_kelamin, int hp, String alamat, String line, String bbm)
              {
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO PENJUAL VALUES (?,?,?,?,?,?)"; //<--- cek lagi
+        String sql = "INSERT INTO PENJUAL VALUES (?,?,?,?,?,?,?,?,?)"; //<--- cek lagi
         connection = database.getConnection();
         try {
             stmt = connection.prepareStatement(sql);
-        stmt.setInt(1, NIM);
+        stmt.setInt(1, NIM); //idpenjual
         stmt.setString(2, nama);
+        stmt.setString(3, email);
+        stmt.setString(4, pass);
+        stmt.setString(5, j_kelamin);
+        stmt.setInt(6, hp);
+        stmt.setString(7, alamat);
+        stmt.setString(8, line);
+        stmt.setString(9, bbm);
         stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Query_Penjual.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,12 +46,20 @@ public class Query_Penjual {
     }
     public void TambahPenjual(Penjual p){
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO PENJUAL VALUES (?,?,?,?,?,?)"; //<--- cek lagi
+        String sql = "INSERT INTO PENJUAL VALUES (?,?,?,?,?,?,?,?,?)"; //<--- cek lagi
         connection = database.getConnection();
         try {
             stmt = connection.prepareStatement(sql);
-        stmt.setInt(1, p.getNIM());
+        stmt.setInt(1, p.getNIM()); //idpenjual
         stmt.setString(2, p.getNama());
+        stmt.setString(3, p.getEmail());
+        stmt.setString(4, p.getEmail());
+        stmt.setString(5, p.getJenis_kelamin());
+        stmt.setInt(6, p.getNo_hp());
+        stmt.setString(7, p.getAlamat());
+        stmt.setString(8, p.getLine());
+        stmt.setString(9, p.getBbm());
+        stmt.executeUpdate();
         stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Query_Penjual.class.getName()).log(Level.SEVERE, null, ex);

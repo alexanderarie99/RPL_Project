@@ -6,7 +6,7 @@ public class Koneksi {
 // Sesuaikan properti jdbcURL dengan basis data anda
     private String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
     private String user = "hr";          //<--- Username disini
-    private String password = "apem";    //<--- Password disini
+    private String password = "bngatez2";    //<--- Password disini
     private Connection connection = null;
     public Koneksi() {
         try {
