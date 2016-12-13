@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet(name="Register", urlPatterns = {"/Register2"})
+@WebServlet(name="Register", urlPatterns = {"/Register"})
 public class SignUp extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

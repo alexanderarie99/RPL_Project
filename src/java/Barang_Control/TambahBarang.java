@@ -41,8 +41,8 @@ public class TambahBarang extends HttpServlet {
         
         
         Query_Barang barang= new Query_Barang();
-//        barang.TambahBarang("brg01","001",14531477,namabarang,1999,"halo",deskripsi,"12,12,2006");
-        barang.TambahBarang("brg01","001",14531477,"apem",1999,"halo","deskripsi","12,12,2006");
+//        barang.TambahBarang("brg02","K001",145314077,namabarang,1999,"halo",deskripsi,"12,12,2006");
+        barang.TambahBarang("brg02","K001",145314077,"apem2",1999,"halo","iki deskripsi","12,12,2006");
         response.sendRedirect("/ProyekPRL/store.html"); //<--- ubah lagi
     }
 

@@ -13,6 +13,7 @@ public class tes {
     public static void main(String[] args) {
         Query_Barang barang=new Query_Barang();
                 
-        barang.TambahBarang("brg01","001",14531477,"apem",1999,"halo","deskripsi","12,12,2006");
+//        barang.TambahBarang("brg05","K001",145314077,"apem",9999,"halo","deskripsi","12-12-12");
+        barang.Hapus("brg01");
     }
 }
