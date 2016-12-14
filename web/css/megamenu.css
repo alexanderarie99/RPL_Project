@@ -46,7 +46,7 @@ background:#F02B63 !important;background:url(data:image/svg+xml;base64,PD94bWwgd
 color: #000;
 }	
 .skyblue li>a,.skyblue>li.showhide span{}
-.skyblue>li:hover>a,.skyblue .dropdown li:hover>a{color:#555; background:#ffffff;}.
+.skyblue>li:hover>a,.skyblue .dropdown li:hover>a{color:#555; background:#ffffff;}
 
 @media(max-width:1024px){
 	.megamenu>li>a {
