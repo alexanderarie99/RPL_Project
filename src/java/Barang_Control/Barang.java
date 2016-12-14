@@ -16,7 +16,18 @@ public class Barang {
     private String nama;
     private String kategori;
     private int harga;
-    private Date kadalursa;
+    private String kadalursa;
+    private String gambar;
+    private String deskripsi;
+
+    public int getIDPENJUAL() {
+        return IDPENJUAL;
+    }
+
+    public void setIDPENJUAL(int IDPENJUAL) {
+        this.IDPENJUAL = IDPENJUAL;
+    }
+    private int IDPENJUAL;
 
     public String getKode_barang() {
         return kode_barang;
@@ -50,11 +61,31 @@ public class Barang {
         this.harga = harga;
     }
 
-    public Date getKadalursa() {
+    public String getKadalursa() {
         return kadalursa;
     }
 
     public void setKadalursa(Date kadalursa) {
-        this.kadalursa = kadalursa;
+        this.setKadalursa(kadalursa);
     } 
+
+    public String getGambar() {
+        return gambar;
+    }
+
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public void setKadalursa(String kadalursa) {
+        this.kadalursa = kadalursa;
+    }
 }

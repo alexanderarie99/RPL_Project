@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -117,6 +118,28 @@ public class Query_Barang {
             
         }
         return kode;
+    }
+      public ArrayList<Barang> listbarang() throws SQLException {
+        connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        ArrayList<Barang> BrList = new ArrayList<Barang>();
+        connection = database.getConnection();
+        statement = connection.prepareStatement("SELECT * FROM BARANG ");
+        resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Barang brn = new Barang();
+            brn.setKode_barang(resultSet.getString(1));
+            brn.setKategori(resultSet.getString(2));
+            brn.setIDPENJUAL(resultSet.getInt(3));
+            brn.setNama(resultSet.getString(4));
+            brn.setHarga(resultSet.getInt(5));
+            brn.setGambar(resultSet.getString(6));
+            brn.setDeskripsi(resultSet.getString(7));
+            brn.setKadalursa(resultSet.getString(8));
+            BrList.add(brn);
+        }
+        return BrList;
     }
     
 }

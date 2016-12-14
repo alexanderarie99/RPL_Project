@@ -7,6 +7,9 @@ package Barang_Control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +53,12 @@ public class TambahBarangProses extends HttpServlet {
         
         String gambar="gambar";
         String deskripsi=request.getParameter("deskripsi");
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); 
+        Date date = new Date();
+        dateFormat.format(date);
+        dateFormat.toString();
+        
         String tgl="tanggal";
         barang.TambahBarang(kodeBarang,kodeKategori,kodePenjual,nama,harga,gambar,deskripsi,tgl);
         response.sendRedirect("/ProyekPRL/store.html");
